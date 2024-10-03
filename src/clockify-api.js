@@ -6,6 +6,50 @@ class ClockifyAPI {
     this.baseUrl = 'https://api.clockify.me/api/v1';
   }
 
+  async getWorkspaceId() {
+    try {
+      const response = await fetch(`${this.baseUrl}/workspaces`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': this.apiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const user = await response.json();
+      return user.id;
+    } catch (error) {
+      console.error('Error fetching workspace ID:', error);
+      throw error;
+    }
+  }
+
+  async getUserId() {
+    try {
+      const response = await fetch(`${this.baseUrl}/user`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': this.apiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const user = await response.json();
+      return user.id;
+    } catch (error) {
+      console.error('Error fetching user ID:', error);
+      throw error;
+    }
+  }
+
   async getTimeEntries(workspaceId, userId, params = {}) {
     const queryParams = new URLSearchParams(params).toString();
     const url = `${this.baseUrl}/workspaces/${workspaceId}/user/${userId}/time-entries?${queryParams}`;
@@ -41,7 +85,7 @@ class ClockifyAPI {
       description: entry.description,
       projectId: entry.projectId,
       userId: entry.userId,
-      billable: entry.billable,
+      //billable: entry.billable,
       task: entry.task,
       startTime: new Date(entry.timeInterval.start),
       endTime: new Date(entry.timeInterval.end),
