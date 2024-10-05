@@ -20,8 +20,9 @@ class ClockifyAPI {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const user = await response.json();
-      return user.id;
+      const workspace = await response.json();
+      //user belongs to only one workspace
+      return workspace[0].id;
     } catch (error) {
       console.error('Error fetching workspace ID:', error);
       throw error;
