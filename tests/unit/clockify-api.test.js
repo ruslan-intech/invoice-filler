@@ -1,13 +1,8 @@
 const ClockifyAPI = require('./../../src/clockify-api');
 
-/*
 const testApiKey = 'test_api_key_12345';
 const testUserId = 'test_user_id_67890';
 const testWorkspaceId = 'test_workspace_id_abcde';
-*/
-const testApiKey = 'OTlmMTlkOTYtMTAwZi00MjUyLWEyNTMtZDIwZDBiMjE0ZTY4';
-const testUserId = '63fe0d768aa4d24ffe5f836f';
-const testWorkspaceId = '63dba861be518e1babbe6bd4';
 
 const incorrectApiKey = 'incorrect_api_key';
 
