@@ -84,7 +84,7 @@ describe('ClockifyAPI', () => {
 
   test('successful getWorkspaceId', async () => {
     const workspaceId = await clockifyAPI.getWorkspaceId();
-    expect(workspaceId).toBe(testWorkspaceId);
+    expect(workspaceId[0]).toBe(testWorkspaceId);
   });
 
   test('incorrect credentials for getWorkspaceId', async () => {
